@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta description="calculator">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="display" id="display" disabled>
+        <div class="buttons">
+            <!-- Number Buttons -->
+            <button onclick="appendNumber(this.innerText)">1</button>
+            <button onclick="appendNumber(this.innerText)">2</button>
+            <button onclick="appendNumber(this.innerText)">3</button>
+            <button onclick="appendNumber(this.innerText)">4</button>
+            <button onclick="appendNumber(this.innerText)">5</button>
+            <button onclick="appendNumber(this.innerText)">6</button>
+            <button onclick="appendNumber(this.innerText)">7</button>
+            <button onclick="appendNumber(this.innerText)">8</button>
+            <button onclick="appendNumber(this.innerText)">9</button>
+            <button onclick="appendNumber(this.innerText)">0</button>
+            <button onclick="appendNumber(this.innerText)">.</button>
+            <!-- Operation Buttons -->
+            <button onclick="chooseOperation('+')">+</button>
+            <button onclick="chooseOperation('-')">-</button>
+            <button onclick="chooseOperation('*')">*</button>
+            <button onclick="chooseOperation('/')">/</button>
+            <button onclick="chooseOperation('%')">%</button>
+            <button onclick="chooseOperation('^')">^</button>
+            <button onclick="chooseOperation('√')">√</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="clearDisplay()">C</button>
+        </div>
+    </div>
+    <div class="memory">
+        <h3>Memory</h3>
+        <ul id="historyList"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

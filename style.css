@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:  100vh;
+    background-color: #f5f5f5;
+}
+.memory {
+    margin-top:  20px;
+    padding:  10px;
+    border:  1px solid #ccc;
+    background-color: #f5f5f5;
+}
+.memory ul {
+    list-style-type: none;
+    padding:  0;
+}
+.memory li {
+    padding:  5px  0;
+}
