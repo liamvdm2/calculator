@@ -12,7 +12,8 @@ let savedHistory = [];
 
 function chooseOperation(op) {
     operation = op;
-    number1 = display.value;
+    // If number1 is not set, use the result of the last calculation
+    number1 = number1 || display.value;
     display.value = '';
 }
 
@@ -22,6 +23,11 @@ function appendNumber(number) {
 
 function calculate() {
     number2 = display.value;
+    // Check if number2 is set, if not, alert the user and exit
+    if (!number2) {
+        alert('Please enter a number for the second operand.');
+        return;
+    }
     let result = eval(`${number1}${operation}${number2}`);
     display.value = result;
 
