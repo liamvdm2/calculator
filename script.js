@@ -14,7 +14,7 @@ function chooseOperation(op) {
     operation = op;
     // If number1 is not set, use the result of the last calculation
     number1 = number1 || display.value;
-    display.value = '';
+    display.value = number1 + operation;
 }
 
 function appendNumber(number) {
@@ -22,7 +22,7 @@ function appendNumber(number) {
 }
 
 function calculate() {
-    number2 = display.value;
+    number2 = display.value.replace(number1 + operation, '').trim();
     // Check if number2 is set, if not, alert the user and exit
     if (!number2) {
         alert('Please enter a number for the second operand.');
