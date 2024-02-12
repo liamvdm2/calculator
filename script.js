@@ -83,6 +83,8 @@ function loadHistory() {
         const timeSpan = document.createElement('span');
         timeSpan.textContent = item.time;
         timeSpan.style.float = 'right'; // Float the time to the right side
+        timeSpan.style.fontSize = '0.8em'; // Reduce the font size
+        timeSpan.style.padding = '5px';
         
         li.textContent = `${item.expression} = ${item.result}`;
         li.appendChild(timeSpan); // Append the time span to the list item
