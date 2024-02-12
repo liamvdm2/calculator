@@ -45,16 +45,19 @@ function clearDisplay() {
 
 
 function saveHistory(expression, result) {
+    // Get the current date and time
+    const currentDateTime = new Date();
+    const formattedDateTime = currentDateTime.toLocaleString();
+
     // Retrieve the existing history from localStorage
     const savedHistory = JSON.parse(localStorage.getItem('calculatorHistory')) || [];
     
     // Add the new calculation at the beginning of the array
-    savedHistory.unshift({ expression, result });
+    savedHistory.unshift({ expression, result, time: formattedDateTime });
     
     // Save the updated history back to localStorage
     localStorage.setItem('calculatorHistory', JSON.stringify(savedHistory));
 }
-
 // Load the latest calculation from localStorage
 function loadHistory() {
     const historyList = document.getElementById('historyList');
@@ -70,7 +73,13 @@ function loadHistory() {
     // Append each history item to the history list
     reversedHistory.forEach(item => {
         const li = document.createElement('li');
+        // Create a span to hold the time
+        const timeSpan = document.createElement('span');
+        timeSpan.textContent = item.time;
+        timeSpan.style.float = 'right'; // Float the time to the right side
+        
         li.textContent = `${item.expression} = ${item.result}`;
+        li.appendChild(timeSpan); // Append the time span to the list item
         historyList.appendChild(li);
     });
 }
@@ -78,19 +87,18 @@ function loadHistory() {
 // Render history for the current page
 function renderHistory() {
     historyList.innerHTML = '';
-    const startIndex = (currentPage - 1) * itemsPerPage;
+    const startIndex = (currentPage -  1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const slicedHistory = savedHistory.slice(startIndex, endIndex);
 
     slicedHistory.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = `${item.expression} = ${item.result}`;
+        li.textContent = `${item.expression} = ${item.result} at ${item.time}`;
         historyList.appendChild(li);
     });
 
     currentPageSpan.textContent = `Page ${currentPage}`;
 }
-
 // Change page
 function changePage(direction) {
     currentPage += direction;
