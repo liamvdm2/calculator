@@ -68,7 +68,7 @@ function saveHistory(expression, result) {
 function loadHistory() {
     const historyList = document.getElementById('historyList');
     // Retrieve the existing history from localStorage
-    const savedHistory = JSON.parse(localStorage.getItem('calculatorHistory')) || [];
+    savedHistory = JSON.parse(localStorage.getItem('calculatorHistory')) || [];
     
     // Reverse the history array to display the newest calculations first
     const reversedHistory = savedHistory.reverse();
@@ -90,34 +90,45 @@ function loadHistory() {
         li.appendChild(timeSpan); // Append the time span to the list item
         historyList.appendChild(li);
     });
+    renderHistory(); // Call renderHistory after loading the history
 }
+
 
 // Render history for the current page
 function renderHistory() {
-    historyList.innerHTML = '';
+    historyList.innerHTML = ''; // Clear the list before adding new items
     const startIndex = (currentPage -  1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const slicedHistory = savedHistory.slice(startIndex, endIndex);
 
     slicedHistory.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = `${item.expression} = ${item.result} at ${item.time}`;
+        const infoWrapper = document.createElement('div'); // Wrapper for expression and result
+        infoWrapper.textContent = `${item.expression} = ${item.result}`;
+        li.appendChild(infoWrapper);
+
+        const timeSpan = document.createElement('span');
+        timeSpan.textContent = item.time;
+        li.appendChild(timeSpan); // Append the time span to the list item
+
         historyList.appendChild(li);
     });
 
     currentPageSpan.textContent = `Page ${currentPage}`;
 }
+
 // Change page
 function changePage(direction) {
     currentPage += direction;
-    if (currentPage < 1) {
-        currentPage = 1;
+    if (currentPage <  1) {
+        currentPage =  1;
         return;
     }
     if (currentPage > Math.ceil(savedHistory.length / itemsPerPage)) {
         currentPage = Math.ceil(savedHistory.length / itemsPerPage);
         return;
     }
+    console.log('Current Page:', currentPage); // Debugging line
     renderHistory();
 }
 
