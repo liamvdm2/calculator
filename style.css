@@ -50,18 +50,35 @@ button {
 button.num {
     background-color: #34a853; /* Dark green */
 }
+
+button.num:hover {
+    box-shadow: #00ff44 0px 0px 10px;
+}
 button.clear {
     background-color: #f44336; /* Red */
+}
+
+button.clear:hover {
+    box-shadow: #ff0000 0px 0px 10px;
 }
 
 button.func {
     background-color: #05ecb3; /* Yellow */
 }
 
+button.func:hover {
+    box-shadow: #00eeff 0px 0px 10px;
+}
+
 button.equal {
     background-color: #ef5350; /* Red */
     color: #ffffff;
 }
+
+button.equal:hover {
+    box-shadow: #ff0000 0px 0px 10px;
+}
+
 
 button:hover {
     cursor: pointer;
@@ -101,13 +118,18 @@ button:hover {
 
 .pagination button {
     padding:  5px  10px;
-    background-color: #444;
+    background-color: #262437;
     color: #fff;
     border: none;
     border-radius:  5px;
     cursor: pointer;
-    min-width:  90px; /* Ensures enough space for the button text */
+    min-width:  110px; /* Ensures enough space for the button text */
     text-align: center; /* Centers the text horizontally */
+}
+
+.pagination button:hover {
+    background-color: #555;
+    box-shadow: #262437 0px 0px 10px;
 }
 
 .pagination button:disabled {
